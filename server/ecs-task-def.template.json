@@ -1,0 +1,33 @@
+{
+  "family": "brewluxe-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::REPLACE_WITH_ACCOUNT_ID:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::REPLACE_WITH_ACCOUNT_ID:role/ecsTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "brewluxe",
+      "image": "REPLACE_IMAGE_URI",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [
+        { "name": "NODE_ENV", "value": "production" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/brewluxe",
+          "awslogs-region": "REPLACE_AWS_REGION",
+          "awslogs-stream-prefix": "brewluxe"
+        }
+      }
+    }
+  ]
+}

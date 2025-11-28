@@ -1,0 +1,67 @@
+name: Build and Deploy to AWS ECS (Fargate)
+
+on:
+  push:
+    branches: [ main ]
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPO: brewluxe
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag and push image to ECR
+        env:
+          ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
+          ECR_REPO: ${{ secrets.ECR_REPO }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+        run: |
+          echo "Building Docker image..."
+          IMAGE_URI=${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}
+          docker build -t ${IMAGE_URI} -f Dockerfile .
+          docker push ${IMAGE_URI}
+          echo "IMAGE_URI=${IMAGE_URI}" >> $GITHUB_OUTPUT
+
+      - name: Prepare ECS task definition
+        id: taskdef
+        run: |
+          # create a task definition JSON by replacing the placeholder image URI
+          IMAGE_URI=${{ steps.ecr-login.outputs.registry }}/${{ secrets.ECR_REPO }}:${{ env.IMAGE_TAG }}
+          sed "s|REPLACE_IMAGE_URI|${IMAGE_URI}|g; s|REPLACE_AWS_REGION|${{ secrets.AWS_REGION }}|g" server/ecs-task-def.template.json > server/ecs-task-def.json
+          cat server/ecs-task-def.json
+
+      - name: Register new task definition
+        run: |
+          aws ecs register-task-definition --cli-input-json file://server/ecs-task-def.json
+
+      - name: Update service to use new task definition
+        run: |
+          # Requires ECS_CLUSTER and ECS_SERVICE secrets
+          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER }} --service ${{ secrets.ECS_SERVICE }} --force-new-deployment
+
+      - name: Wait for service stability
+        run: |
+          aws ecs wait services-stable --cluster ${{ secrets.ECS_CLUSTER }} --services ${{ secrets.ECS_SERVICE }}
+
+      - name: Report
+        run: |
+          echo "Deployment to ECS completed."
+          echo "Service: ${{ secrets.ECS_SERVICE }} in cluster: ${{ secrets.ECS_CLUSTER }}"
