@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+Dockerfile
+docker-compose.yml
+server/node_modules
+server/npm-debug.log
+server/.env
+*.log
+brewluxe.db

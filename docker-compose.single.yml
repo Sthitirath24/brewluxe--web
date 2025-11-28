@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  brewluxe:
+    build: .
+    container_name: brewluxe-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server/brewluxe.db:/app/server/brewluxe.db
+    environment:
+      - NODE_ENV=production

@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes, maximum-scale=5">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="BREWLUXE">
+    <meta name="theme-color" content="#0f0f0f">
     <title>BREWLUXE - Where Every Sip Tells a Story</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -1262,6 +1266,253 @@
                 font-size: 2.5rem;
             }
         }
+
+        /* Enhanced Mobile Friendliness */
+        @media (max-width: 768px) {
+            /* Touch target optimization (44px minimum) */
+            .icon-btn {
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .icon-btn-small {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .btn-primary {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            .hamburger {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .qty-btn {
+                min-width: 40px;
+                min-height: 40px;
+            }
+
+            /* Improved modal for mobile */
+            .modal {
+                align-items: flex-end;
+            }
+
+            .modal-content {
+                width: 100%;
+                max-height: 90vh;
+                border-radius: 20px 20px 0 0;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .close-btn {
+                top: 1rem;
+                right: 1rem;
+                z-index: 10;
+            }
+
+            /* Improved cart modal on mobile */
+            #cartModal .modal-content {
+                max-height: 80vh;
+            }
+
+            #cartModal .cart-modal-content {
+                max-height: calc(80vh - 200px);
+            }
+
+            /* Better form inputs on mobile */
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px; /* prevents zoom on iOS focus */
+                min-height: 44px;
+                padding: 0.75rem;
+            }
+
+            .form-group input::placeholder,
+            .form-group textarea::placeholder {
+                font-size: 14px;
+            }
+
+            /* Improve chat window mobile experience */
+            .chat-button {
+                min-width: 50px;
+                min-height: 50px;
+            }
+
+            .chat-window {
+                max-height: calc(100vh - 100px);
+            }
+
+            .chat-messages {
+                max-height: calc(100% - 120px);
+            }
+
+            .chat-input {
+                font-size: 16px;
+                min-height: 40px;
+            }
+
+            /* Better newsletter/search modals */
+            #newsletterModal .modal-content,
+            #searchModal .modal-content {
+                width: 95%;
+                max-height: 85vh;
+                max-width: 100%;
+            }
+
+            /* Checkout modal improvements */
+            #checkoutModal .modal-content {
+                width: 100%;
+                max-height: 95vh;
+                border-radius: 20px 20px 0 0;
+            }
+
+            #checkoutContent {
+                max-height: calc(95vh - 80px);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Better accordion/collapsible on mobile */
+            .order-type-btn {
+                min-height: 44px;
+                padding: 0.75rem 1rem;
+            }
+
+            /* Ensure proper spacing in mobile forms */
+            .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            /* Improve button spacing in forms */
+            .form-group button {
+                min-height: 44px;
+                font-size: 16px;
+            }
+
+            /* Prevent pinch-zoom issues */
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="number"],
+            select,
+            textarea {
+                touch-action: manipulation;
+            }
+        }
+
+        /* Extra small phones (< 375px) */
+        @media (max-width: 374px) {
+            .hero h1 {
+                font-size: clamp(1.5rem, 7vw, 3rem) !important;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .menu-card h3,
+            .product-card h3 {
+                font-size: 1rem;
+            }
+
+            .price {
+                font-size: 1rem;
+            }
+
+            .btn-primary {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+                min-height: 40px;
+            }
+
+            nav {
+                padding: 0.4rem 1%;
+            }
+
+            .logo {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
+            }
+
+            .brand-name {
+                font-size: 14px;
+            }
+
+            .icon-btn {
+                font-size: 18px;
+            }
+
+            .form-group label {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+            nav {
+                padding: 0.4rem 2%;
+            }
+
+            .hero {
+                min-height: 100vh;
+            }
+
+            section {
+                padding: 2rem 5%;
+            }
+
+            .modal-content {
+                max-height: 90vh;
+            }
+
+            .logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .chat-window {
+                height: 85vh;
+            }
+        }
+
+        /* Prevent text selection on buttons/interactive elements */
+        .icon-btn,
+        .btn-primary,
+        .icon-btn-small,
+        button {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Improve tap highlights */
+        button, a {
+            -webkit-tap-highlight-color: rgba(201, 169, 110, 0.2);
+        }
+
+        /* Mobile keyboard handling */
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
     </style>
 </head>
 <body>
@@ -1609,6 +1860,7 @@
     </div>
 
     <script>
+        // Static gallery items (no API needed)
         const galleryItems = [
             { type: 'image', src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop', title: 'Fresh Brew', desc: 'Morning perfection' },
             { type: 'image', src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=600&fit=crop', title: 'Coffee Beans', desc: 'Premium selection' },
@@ -1618,25 +1870,12 @@
             { type: 'image', src: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=800&h=600&fit=crop', title: 'Espresso Shot', desc: 'Bold and rich' }
         ];
 
-        const menuItems = [
-            { id: 1, name: 'Espresso', description: 'Rich and bold Italian classic', price: 3.50, image: 'https://images.unsplash.com/photo-1579992357154-faf4bde95b3d?w=400&h=300&fit=crop' },
-            { id: 2, name: 'Cappuccino', description: 'Smooth espresso with steamed milk foam', price: 4.50, image: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop' },
-            { id: 3, name: 'Caramel Latte', description: 'Sweet caramel with creamy milk', price: 5.00, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop' },
-            { id: 4, name: 'Mocha', description: 'Chocolate and espresso perfection', price: 5.50, image: 'https://images.unsplash.com/photo-1607260550778-aa9d29444ce1?w=400&h=300&fit=crop' },
-            { id: 5, name: 'Flat White', description: 'Velvety microfoam with espresso', price: 4.75, image: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?w=400&h=300&fit=crop' },
-            { id: 6, name: 'Cold Brew', description: 'Smooth, refreshing cold-steeped coffee', price: 4.25, image: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=400&h=300&fit=crop' },
-            { id: 7, name: 'Macchiato', description: 'Espresso marked with foam', price: 3.75, image: 'https://images.unsplash.com/photo-1557006021-b85faa2bc5e2?w=400&h=300&fit=crop' },
-            { id: 8, name: 'Affogato', description: 'Espresso over vanilla ice cream', price: 6.00, image: 'https://images.unsplash.com/photo-1563741451-a0f6a7624c95?w=400&h=300&fit=crop' }
-        ];
-
-        const products = [
-            { id: 101, name: 'Ethiopian Blend', description: 'Fruity and floral notes', price: 18.99, rating: 5, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop' },
-            { id: 102, name: 'Colombian Supreme', description: 'Rich and balanced', price: 16.99, rating: 4, image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=300&fit=crop' },
-            { id: 103, name: 'Italian Roast', description: 'Dark and intense', price: 15.99, rating: 5, image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=300&fit=crop' },
-            { id: 104, name: 'Brazilian Santos', description: 'Smooth and nutty', price: 17.99, rating: 4, image: 'https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?w=400&h=300&fit=crop' },
-            { id: 105, name: 'Sumatra Mandheling', description: 'Full-bodied and earthy', price: 19.99, rating: 5, image: 'https://images.unsplash.com/photo-1525385133512-2f3bdd039054?w=400&h=300&fit=crop' },
-            { id: 106, name: 'Kenya AA', description: 'Bright and wine-like', price: 20.99, rating: 5, image: 'https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=400&h=300&fit=crop' }
-        ];
+        // These will be fetched from API
+        let menuItems = [];
+        let products = [];
+        
+        // API base URL
+        const API_BASE_URL = 'http://localhost:3000/api';
 
         const reviews = [
             { name: 'Sarah Johnson', avatar: 'https://i.pravatar.cc/150?img=1', rating: 5, date: '2025-09-15', text: 'Absolutely love BREWLUXE! The espresso is perfectly brewed every time, and the ambiance is so cozy. The loyalty program is a great bonus!' },
@@ -1652,19 +1891,235 @@
         let loyaltyPoints = 0;
         let currentReview = 0;
 
-        window.addEventListener('DOMContentLoaded', () => {
+        // Persistence helpers
+        function saveState() {
+            try {
+                localStorage.setItem('brewluxe_cart', JSON.stringify(cart));
+                localStorage.setItem('brewluxe_favorites', JSON.stringify(favorites));
+                localStorage.setItem('brewluxe_loyalty', String(loyaltyPoints));
+            } catch (err) {
+                console.warn('Could not save state to localStorage', err);
+            }
+        }
+
+        function loadState() {
+            try {
+                const c = localStorage.getItem('brewluxe_cart');
+                const f = localStorage.getItem('brewluxe_favorites');
+                const l = localStorage.getItem('brewluxe_loyalty');
+
+                if (c) cart = JSON.parse(c);
+                if (f) favorites = JSON.parse(f);
+                if (l) loyaltyPoints = parseInt(l, 10) || 0;
+            } catch (err) {
+                console.warn('Could not load state from localStorage', err);
+            }
+        }
+
+        // client-side checkout validation
+        function validateCheckout(formData) {
+            const fullName = formData.get('fullName') || '';
+            const email = formData.get('email') || '';
+            const phone = formData.get('phone') || '';
+            const orderType = currentOrderType;
+            const paymentMethod = formData.get('paymentMethod');
+
+            if (!fullName.trim()) return { valid: false, message: 'Please enter your full name.' };
+            if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) return { valid: false, message: 'Please enter a valid email.' };
+            if (!phone.trim()) return { valid: false, message: 'Please enter your phone number.' };
+
+            if (orderType === 'delivery') {
+                const address = formData.get('address') || '';
+                const city = formData.get('city') || '';
+                const postalCode = formData.get('postalCode') || '';
+                if (!address.trim() || !city.trim() || !postalCode.trim()) return { valid: false, message: 'Please fill delivery address, city and postal code.' };
+            }
+
+            if (paymentMethod === 'card') {
+                const cardNumber = formData.get('cardNumber') || '';
+                const expiry = formData.get('expiry') || '';
+                const cvv = formData.get('cvv') || '';
+                if (!/^[0-9 \-]{13,19}$/.test(cardNumber)) return { valid: false, message: 'Please enter a valid card number.' };
+                if (!/^\d{2}\/\d{2}$/.test(expiry)) return { valid: false, message: 'Please enter expiry in MM/YY format.' };
+                if (!/^\d{3,4}$/.test(cvv)) return { valid: false, message: 'Please enter a valid CVV.' };
+            }
+
+            if (!cart || cart.length === 0) return { valid: false, message: 'Your cart is empty.' };
+
+            return { valid: true };
+        }
+
+        // ============ API FETCH FUNCTIONS ============
+        
+        // Fetch menu items from API
+        async function fetchMenuItems() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/menu`);
+                if (response.ok) {
+                    menuItems = await response.json();
+                    console.log('✓ Fetched menu items from API:', menuItems.length);
+                    return true;
+                } else {
+                    console.warn('API returned status:', response.status);
+                    return false;
+                }
+            } catch (error) {
+                console.warn('Failed to fetch menu items from API:', error);
+                return false;
+            }
+        }
+
+        // Fetch products from API
+        async function fetchProducts() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/products`);
+                if (response.ok) {
+                    products = await response.json();
+                    console.log('✓ Fetched products from API:', products.length);
+                    return true;
+                } else {
+                    console.warn('API returned status:', response.status);
+                    return false;
+                }
+            } catch (error) {
+                console.warn('Failed to fetch products from API:', error);
+                return false;
+            }
+        }
+
+        // Detect mobile device
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // Handle viewport height changes (soft keyboard appear/disappear on mobile)
+        function handleMobileViewport() {
+            if (!isMobileDevice()) return;
+            
+            let lastViewportHeight = window.innerHeight;
+            
+            window.addEventListener('resize', () => {
+                const currentHeight = window.innerHeight;
+                const isKeyboardOpen = currentHeight < lastViewportHeight;
+                
+                if (isKeyboardOpen) {
+                    // Keyboard opened, ensure focused element is visible
+                    const activeElement = document.activeElement;
+                    if (activeElement && activeElement.scrollIntoView) {
+                        setTimeout(() => activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+                    }
+                }
+                lastViewportHeight = currentHeight;
+            }, { passive: true });
+        }
+
+        // Single init function to centralize startup logic
+        async function initApp() {
+            loadState();
+            handleMobileViewport();
             renderGallery();
-            renderMenu();
-            renderProducts();
+            
+            // Show loading indicator while fetching data
+            const menuGrid = document.getElementById('menuGrid');
+            const productsGrid = document.getElementById('productsGrid');
+            if (menuGrid) menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--gold);">⏳ Loading menu items...</p>';
+            if (productsGrid) productsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--gold);">⏳ Loading products...</p>';
+            
+            // Fetch data from APIs
+            const menuLoaded = await fetchMenuItems();
+            const productsLoaded = await fetchProducts();
+            
+            // Render with API data or show fallback message
+            if (menuLoaded && menuItems.length > 0) {
+                renderMenu();
+            } else if (menuGrid) {
+                menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #ff6b6b;">Unable to load menu items. Make sure the backend server is running on http://localhost:3000</p>';
+            }
+            
+            if (productsLoaded && products.length > 0) {
+                renderProducts();
+            } else if (productsGrid) {
+                productsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #ff6b6b;">Unable to load products. Make sure the backend server is running on http://localhost:3000</p>';
+            }
+            
             renderReviews();
+            updateCartBadge();
+            updateFavoriteButtons();
+            updateLoyaltyDisplay();
             showToast('Welcome to BREWLUXE!');
             startReviewCarousel();
             setupEventListeners();
-            
+
+            // Newsletter prompt after short delay
             setTimeout(() => {
-                document.getElementById('newsletterModal').classList.add('active');
+                const modal = document.getElementById('newsletterModal');
+                if (modal) modal.classList.add('active');
             }, 5000);
-        });
+
+            // Register checkout form handler here (centralized)
+            const checkoutForm = document.getElementById('checkoutForm');
+            if (checkoutForm) {
+                checkoutForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(checkoutForm);
+
+                    // client-side validation
+                    const validation = validateCheckout(formData);
+                    if (!validation.valid) {
+                        showToast(validation.message);
+                        return;
+                    }
+
+                    const paymentMethod = formData.get('paymentMethod');
+
+                    try {
+                        // Prepare order data
+                        const orderData = {
+                            orderType: currentOrderType,
+                            customer: {
+                                fullName: formData.get('fullName'),
+                                email: formData.get('email'),
+                                phone: formData.get('phone'),
+                                address: formData.get('address'),
+                                city: formData.get('city'),
+                                postalCode: formData.get('postalCode'),
+                                instructions: formData.get('instructions')
+                            },
+                            items: cart,
+                            specialRequests: formData.get('specialRequests'),
+                            paymentMethod: paymentMethod,
+                            subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                            deliveryFee: currentOrderType === 'delivery' ? 3.99 : 0,
+                            total: parseFloat(document.getElementById('checkoutTotal').textContent)
+                        };
+
+                        if (paymentMethod === 'card') {
+                            // Send to Stripe (mocked by local mock server)
+                            const stripeResponse = await fetch('http://localhost:3000/api/payment/create-payment-intent', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(orderData)
+                            });
+
+                            if (stripeResponse.ok) {
+                                const result = await stripeResponse.json();
+                                processStripePayment(result, orderData);
+                            } else {
+                                throw new Error('Payment gateway error');
+                            }
+                        } else {
+                            // Submit order directly for COD or UPI
+                            await submitOrder(orderData);
+                        }
+                    } catch (error) {
+                        showToast('Error processing payment: ' + error.message);
+                    }
+                });
+            }
+        }
+
+        // Run init on DOMContentLoaded
+        window.addEventListener('DOMContentLoaded', initApp);
 
         function renderGallery() {
             const grid = document.getElementById('galleryGrid');
@@ -1779,6 +2234,7 @@
             updateCartBadge();
             addLoyaltyPoints(item.price * 0.1);
             showToast(`${item.name} added to cart!`);
+            saveState();
         }
 
         function updateCartBadge() {
@@ -1800,6 +2256,7 @@
             }
             
             updateFavoriteButtons();
+            saveState();
         }
 
         function updateFavoriteButtons() {
@@ -1823,6 +2280,7 @@
             const points = Math.floor(amount * 10);
             loyaltyPoints += points;
             updateLoyaltyDisplay();
+            saveState();
         }
 
         function updateLoyaltyDisplay() {
@@ -2028,6 +2486,7 @@
             
             updateCartBadge();
             renderCart();
+            saveState();
         }
 
         function removeFromCart(index) {
@@ -2035,6 +2494,7 @@
             updateCartBadge();
             renderCart();
             showToast('Item removed from cart');
+            saveState();
         }
 
         let currentOrderType = 'pickup';
@@ -2127,62 +2587,6 @@
         `;
         document.head.appendChild(orderStyle);
 
-        // Checkout form submission
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkoutForm = document.getElementById('checkoutForm');
-            if (checkoutForm) {
-                checkoutForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    
-                    const formData = new FormData(checkoutForm);
-                    const paymentMethod = formData.get('paymentMethod');
-                    
-                    try {
-                        // Prepare order data
-                        const orderData = {
-                            orderType: currentOrderType,
-                            customer: {
-                                fullName: formData.get('fullName'),
-                                email: formData.get('email'),
-                                phone: formData.get('phone'),
-                                address: formData.get('address'),
-                                city: formData.get('city'),
-                                postalCode: formData.get('postalCode'),
-                                instructions: formData.get('instructions')
-                            },
-                            items: cart,
-                            specialRequests: formData.get('specialRequests'),
-                            paymentMethod: paymentMethod,
-                            subtotal: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-                            deliveryFee: currentOrderType === 'delivery' ? 3.99 : 0,
-                            total: parseFloat(document.getElementById('checkoutTotal').textContent)
-                        };
-
-                        if (paymentMethod === 'card') {
-                            // Send to Stripe
-                            const stripeResponse = await fetch('http://localhost:3000/api/payment/create-payment-intent', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(orderData)
-                            });
-
-                            if (stripeResponse.ok) {
-                                const result = await stripeResponse.json();
-                                processStripePayment(result, orderData);
-                            } else {
-                                throw new Error('Payment gateway error');
-                            }
-                        } else {
-                            // Submit order directly for COD or UPI
-                            await submitOrder(orderData);
-                        }
-                    } catch (error) {
-                        showToast('Error processing payment: ' + error.message);
-                    }
-                });
-            }
-        }, { once: true });
-
         async function submitOrder(orderData) {
             try {
                 const response = await fetch('http://localhost:3000/api/orders', {
@@ -2244,33 +2648,51 @@
         }
 
         function setupEventListeners() {
+            // Scroll listener with throttle for performance
+            let scrollTimeout;
             window.addEventListener('scroll', () => {
-                const nav = document.querySelector('nav');
-                if (window.scrollY > 100) {
-                    nav.style.background = 'rgba(15, 15, 15, 0.98)';
-                    nav.style.boxShadow = '0 5px 30px rgba(201, 169, 110, 0.2)';
-                } else {
-                    nav.style.background = 'rgba(15, 15, 15, 0.95)';
-                    nav.style.boxShadow = '0 2px 20px rgba(201, 169, 110, 0.1)';
-                }
-            });
+                if (scrollTimeout) return;
+                scrollTimeout = setTimeout(() => {
+                    const nav = document.querySelector('nav');
+                    if (window.scrollY > 100) {
+                        nav.style.background = 'rgba(15, 15, 15, 0.98)';
+                        nav.style.boxShadow = '0 5px 30px rgba(201, 169, 110, 0.2)';
+                    } else {
+                        nav.style.background = 'rgba(15, 15, 15, 0.95)';
+                        nav.style.boxShadow = '0 2px 20px rgba(201, 169, 110, 0.1)';
+                    }
+                    scrollTimeout = null;
+                }, 100);
+            }, { passive: true });
 
-            // Mobile Menu
+            // Mobile Menu with better accessibility
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
             
-            hamburger.addEventListener('click', () => {
+            hamburger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isOpen = hamburger.classList.contains('active');
                 hamburger.classList.toggle('active');
                 navLinks.classList.toggle('active');
+                // Prevent body scroll when menu open on mobile
+                if (!isOpen) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+                hamburger.setAttribute('aria-expanded', !isOpen);
             });
 
             navLinks.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
                     hamburger.classList.remove('active');
                     navLinks.classList.remove('active');
+                    document.body.style.overflow = '';
+                    hamburger.setAttribute('aria-expanded', 'false');
                 }
             });
 
+            // Close modals on backdrop click
             document.addEventListener('click', (e) => {
                 if (e.target.classList.contains('modal') && !e.target.classList.contains('modal-content')) {
                     closeSearch();
@@ -2282,6 +2704,9 @@
                     closeLightbox();
                 }
             });
+
+            // Prevent zoom on input focus on iOS
+            document.addEventListener('touchstart', () => {}, { passive: true });
         }
 
         // Add CSS for mobile nav

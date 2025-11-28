@@ -1,0 +1,25 @@
+{
+  "name": "brewluxe-server",
+  "version": "1.0.0",
+  "description": "BREWLUXE backend server with SQLite database for menu management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "seed": "node scripts/seed.js"
+  },
+  "keywords": [
+    "coffee",
+    "menu",
+    "api",
+    "database"
+  ],
+  "author": "BREWLUXE",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  }
+}
