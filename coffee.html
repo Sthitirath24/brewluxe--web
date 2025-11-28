@@ -1874,8 +1874,12 @@
         let menuItems = [];
         let products = [];
         
-        // API base URL
-        const API_BASE_URL = 'http://localhost:3000/api';
+        // API base URL (configurable via `config.js` / `window.APP_CONFIG`)
+        // If you deploy the backend publicly, create `config.js` with window.APP_CONFIG.API_BASE_URL
+        // Example: window.APP_CONFIG = { API_BASE_URL: 'https://my-backend.example.com/api' }
+        const API_BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL)
+            ? String(window.APP_CONFIG.API_BASE_URL).replace(/\/+$/g, '')
+            : 'http://localhost:3000/api';
 
         const reviews = [
             { name: 'Sarah Johnson', avatar: 'https://i.pravatar.cc/150?img=1', rating: 5, date: '2025-09-15', text: 'Absolutely love BREWLUXE! The espresso is perfectly brewed every time, and the ambiance is so cozy. The loyalty program is a great bonus!' },
@@ -2095,7 +2099,7 @@
 
                         if (paymentMethod === 'card') {
                             // Send to Stripe (mocked by local mock server)
-                            const stripeResponse = await fetch('http://localhost:3000/api/payment/create-payment-intent', {
+                            const stripeResponse = await fetch(`${API_BASE_URL}/payment/create-payment-intent`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify(orderData)
@@ -2589,7 +2593,7 @@
 
         async function submitOrder(orderData) {
             try {
-                const response = await fetch('http://localhost:3000/api/orders', {
+                const response = await fetch(`${API_BASE_URL}/orders`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(orderData)
