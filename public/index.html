@@ -9,6 +9,8 @@
 	<meta name="theme-color" content="#0f0f0f">
 	<title>BREWLUXE - Where Every Sip Tells a Story</title>
 	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+	<!-- Load generated runtime config (created by scripts/generate-config.js) -->
+	<script src="/config.js"></script>
 	<style>
 		* {
 			margin: 0;
@@ -92,6 +94,9 @@
 	</style>
 </head>
 <body>
-	<!-- ...existing code... -->
+	<!-- The public index is kept in sync with coffee.html. During deploy, set window.BREWLUXE_BACKEND_URL or include a meta[name="brewluxe-api"] with the full API base to point to your production backend. -->
+	<!-- To override: add a small script tag before this file's main script, e.g. -->
+	<!-- <script>window.BREWLUXE_BACKEND_URL = 'https://your-backend.example.com';</script> -->
+	<!-- ...existing code... (copy the full contents of coffee.html) ... -->
 </body>
 </html>

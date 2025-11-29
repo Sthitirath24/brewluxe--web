@@ -1874,12 +1874,32 @@
         let menuItems = [];
         let products = [];
         
-        // API base URL (configurable via `config.js` / `window.APP_CONFIG`)
-        // If you deploy the backend publicly, create `config.js` with window.APP_CONFIG.API_BASE_URL
-        // Example: window.APP_CONFIG = { API_BASE_URL: 'https://my-backend.example.com/api' }
-        const API_BASE_URL = (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL)
-            ? String(window.APP_CONFIG.API_BASE_URL).replace(/\/+$/g, '')
-            : 'http://localhost:3000/api';
+        // API base URL resolver (production-friendly)
+        // Priority:
+        // 1) window.APP_CONFIG.API_BASE_URL (full base, may include /api)
+        // 2) window.BREWLUXE_BACKEND_URL (hostname or full base; /api appended if missing)
+        // 3) meta[name="brewluxe-api"] content value
+        // 4) production default (update to your real URL)
+        // 5) final fallback to localhost for local development
+        const API_BASE_URL = (function() {
+            function normalize(url) {
+                if (!url) return null;
+                let s = String(url).trim();
+                s = s.replace(/\/+$/g, '');
+                // if the URL doesn't end with /api, append it
+                if (!/\/api$/i.test(s)) s = s + '/api';
+                return s;
+            }
+
+            if (window.APP_CONFIG && window.APP_CONFIG.API_BASE_URL) return normalize(window.APP_CONFIG.API_BASE_URL);
+            if (window.BREWLUXE_BACKEND_URL) return normalize(window.BREWLUXE_BACKEND_URL);
+            const meta = document.querySelector('meta[name="brewluxe-api"]');
+            if (meta && meta.content) return normalize(meta.content);
+
+            // TODO: replace this with your actual production backend URL (must be reachable by the frontend)
+            const productionDefault = 'https://brewluxe-backend.onrender.com/api';
+            return productionDefault || 'http://localhost:3000/api';
+        })();
 
         const reviews = [
             { name: 'Sarah Johnson', avatar: 'https://i.pravatar.cc/150?img=1', rating: 5, date: '2025-09-15', text: 'Absolutely love BREWLUXE! The espresso is perfectly brewed every time, and the ambiance is so cozy. The loyalty program is a great bonus!' },
@@ -2037,13 +2057,15 @@
             if (menuLoaded && menuItems.length > 0) {
                 renderMenu();
             } else if (menuGrid) {
-                menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #ff6b6b;">Unable to load menu items. Make sure the backend server is running on http://localhost:3000</p>';
+                const backendHost = (API_BASE_URL || '').replace(/\/api$/i, '');
+                menuGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #ff6b6b;">Unable to load menu items. Is the backend available at <a href="${backendHost}" target="_blank" rel="noreferrer" style="color:var(--gold);">${backendHost}</a>?</p>`;
             }
             
             if (productsLoaded && products.length > 0) {
                 renderProducts();
             } else if (productsGrid) {
-                productsGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #ff6b6b;">Unable to load products. Make sure the backend server is running on http://localhost:3000</p>';
+                const backendHost = (API_BASE_URL || '').replace(/\/api$/i, '');
+                productsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #ff6b6b;">Unable to load products. Is the backend available at <a href="${backendHost}" target="_blank" rel="noreferrer" style="color:var(--gold);">${backendHost}</a>?</p>`;
             }
             
             renderReviews();
